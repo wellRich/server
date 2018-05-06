@@ -122,27 +122,6 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" id="content-wrapper" style="min-height: 421px;">
-        <!--bootstrap tab风格 多标签页-->
-        <div class="content-tabs">
-            <nav class="page-tabs menuTabs tab-ui-menu" id="tab-menu">
-                <div class="page-tabs-content" style="margin-left: 0px;">
-                </div>
-            </nav>
-            <div class="btn-group roll-nav roll-right">
-                <button class="dropdown tabClose" data-toggle="dropdown">
-                    Close<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right" style="min-width: 128px; font-size:12px;">
-                    <li><a class="tabCloseAll" href="javascript:;">1</a>
-                    </li>
-                    <li><a href="javascript:;">2</a></li>
-                </ul>
-            </div>
-
-            <a class="roll-nav roll-right fullscreen" style="cursor:pointer; background-color:#FFFFFF;"
-               ms-on-click="fullScreen()" title="fullScreen"><i
-                    class="fa fa-arrows-alt fa-lg"></i></a>
-        </div>
         <section class="content-header">
             <h1>
                 Page Header
@@ -155,25 +134,53 @@
         </section>
         <section class="content container-fluid">
             <div class="row" style="background-color: #ffffff; ">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Parser SQL</h3>
-                        <div class="box-tools pull-right">
-                            <!-- Buttons, labels, and many other things can be placed here! -->
-                            <!-- Here is a label for example -->
-                            <span class="label label-primary">Tool</span>
+                <div class="col-sm-12 col-md-5">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">数据表</h3>
+                            <div class="box-tools pull-right">
+                                <!-- Buttons, labels, and many other things can be placed here! -->
+                                <!-- Here is a label for example -->
+                                <button ms-on-click="draw" class="btn default label-primary">
+                                    <span>绘图</span>
+                                    <i class="fa fa-play"></i>
+                                </button>
+                            </div>
+                            <!-- /.box-tools -->
                         </div>
-                        <!-- /.box-tools -->
+                        <!-- /.box-header -->
+                        <div class="box-body" >
+                            <div class="input-group">
+                                <input type="text" id="searchZoning" ms-duplex="data.searchValue" class="form-control input-sm" placeholder="使用区划名进行查询...">
+                                <span class="input-group-addon" ms-on-click="findInTree()">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                            <ul class="ztree" id="tables"></ul>
+                        </div>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        The body of the box
+                </div>
+                <div class="col-sm-12 col-md-7">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Workspace</h3>
+                            <div class="box-tools pull-right">
+                                <!-- Buttons, labels, and many other things can be placed here! -->
+                                <!-- Here is a label for example -->
+                                <span class="label label-primary">Tool</span>
+                            </div>
+                            <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            The body of the box
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            The footer of the box
+                        </div>
+                        <!-- box-footer -->
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        The footer of the box
-                    </div>
-                    <!-- box-footer -->
                 </div>
             </div>
         </section>
