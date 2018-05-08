@@ -5,17 +5,37 @@ jsPlumb.ready(function () {
         Endpoint: ["Dot", {radius: 2}],
         Connector:"StateMachine",
         HoverPaintStyle: {stroke: "#1e8151", strokeWidth: 2 },
+
+        //覆盖图配置，可以设置5种——Arrow（箭头）、PlainArrow（平尾箭头）、Diamond（菱形）、Label（文本标签）与Custom（自定义元素）
+        // 每种又可以设置多个
+        //支持自定义的覆盖图，
+        // 比如一个元素用来显示表连接信息——连接方式（左连接、右连接）、连接条件（on left = right | left> right）等等
         ConnectionOverlays: [
+
+            //箭头,可以是多个箭头
             [ "Arrow", {
                 location: 1,
                 id: "arrow",
                 length: 14,
                 foldback: 0.8
             } ],
-            [ "Label", { label: "FOO", id: "label", cssClass: "aLabel" }]
+
+
+            //文本标签
+            [ "Label", { label: "FOO", id: "label", cssClass: "aLabel" }],
+
+            //自定义形状
+            ["Custom", {
+                create:function(component) {
+                    return $("<select id='myDropDown'><option value='foo'>foo</option><option value='bar'>bar</option></select>");
+                },
+                location:0.7,
+                id:"customOverlay"
+            }]
         ],
         Container: "canvas"
     });
+
 
     instance.registerConnectionType("basic", { anchor:"Continuous", connector:"StateMachine" });
 
@@ -28,7 +48,9 @@ jsPlumb.ready(function () {
     // just do this: instance.bind("click", instance.deleteConnection), but I wanted to make it clear what was
     // happening.
     instance.bind("click", function (c) {
-        instance.deleteConnection(c);
+
+        //删除连接线
+        //instance.deleteConnection(c);
     });
 
     // bind a connection listener. note that the parameter passed to this function contains more than
