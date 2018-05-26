@@ -1,3 +1,159 @@
+//ztree的测试数据
+var vm = avalon.define({
+        $id: "root",
+        name: "tangolivesky",
+        nodes: {},
+        tables: [],
+        data: {
+            searchValue: ''
+        },
+        rpt: {},
+        findInTree: function () {
+
+            // 重写了zTreeSearch中的查询方法
+            // 清除高亮
+            var value = vm.data.searchValue,
+                allNodes = zTreeObj.transformToArray(zTreeObj.getNodes());
+            for (var i in allNodes) {
+                allNodes[i].highlight = false;
+                zTreeObj.updateNode(allNodes[i]);
+            }
+            if (value == '') return; // input '' wipe highlight
+
+            // 查询节点
+            var nodes = zTreeObj.getNodesByParamFuzzy('name', value);
+
+            // 高亮显示匹配的节点，并展开
+            for (var i in nodes) {
+                nodes[i].highlight = true;
+                zTreeObj.updateNode(nodes[i]);
+                zTreeObj.expandNode(nodes[i].getParentNode(), true);
+
+                //定位到匹配的第一个节点
+                if (i == 0) {
+                    zTreeObj.selectNode(nodes[0]);
+                }
+            }
+        },
+        getNodes: function () {
+            return zTreeObj.getNodes();
+        },
+        getCheckedNodes: function () {
+            return zTreeObj.getCheckedNodes(true);
+        },
+        initNode: function(el) {
+            var jsp = vm.data.jsp;
+            // initialise draggable elements.
+            jsp.draggable(el);
+
+            jsp.makeSource(el, {
+                filter: ".ep",
+                anchor: "Continuous",
+                connectorStyle: { stroke: "#5c96bc", strokeWidth: 2, outlineStroke: "transparent", outlineWidth: 4 },
+                connectionType:"basic",
+                extract:{
+                    "action":"the-action"
+                },
+                maxConnections: 2,
+                onMaxConnections: function (info, e) {
+                    alert("Maximum connections (" + info.maxConnections + ") reached");
+                }
+            });
+
+            jsp.makeTarget(el, {
+                dropOptions: { hoverClass: "dragHover" },
+                anchor: "Continuous",
+                allowLoopback: true
+            });
+
+            // this is not part of the core demo functionality; it is a means for the Toolkit edition's wrapped
+            // version of this demo to find out about new nodes being added.
+            //
+            jsp.fire("jsPlumbDemoNodeAdded", el);
+        },
+        newNode:  function(x, y, id) {
+            var d = document.createElement("div");
+            var id = id || jsPlumbUtil.uuid();
+            d.className = "w";
+            d.id = id;
+            d.innerHTML = id.substring(0, 7) + "<div class=\"ep\"></div>";
+            d.style.left = x + "px";
+            d.style.top = y + "px";
+            vm.data.jsp.getContainer().appendChild(d);
+            vm.initNode(d);
+            return d;
+        },
+        //描绘数据表
+        draw: function () {
+            var jsp = vm.data.jsp;
+            //1 获取节点
+            var nodes = zTreeObj.getCheckedNodes();
+            console.log("draw.nodes------> ", nodes);
+
+            for(var n in nodes){
+                console.log("draw.node------> ", nodes[n]);
+                if(nodes[n].pId === 0){
+                    vm.newNode(100, 200, nodes[n].name );
+                }
+            }
+
+            //2
+
+
+
+        }
+
+    }),
+    setting = {
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "id",
+                pIdKey: "pId",
+                rootPId: 0
+            },
+            key: {
+                children: "columns"
+            }
+        },
+        check: {
+            enable: true,
+            chkStyle: "checkbox",
+            chkboxType: {
+                "Y": "ps",
+                "N": "s"
+            }
+        },
+        callback: {
+            onCheck: myOnCheck
+        }
+    },
+    zTreeDom = "tables",
+    zTreeObj = buildTree();
+
+//创建zTree树
+function buildTree() {
+    var data = testData,
+        _search = $('#searchZoning');
+
+    _search.keyup(function (e) {
+        if (e.keyCode === 13) {
+            vm.findInTree();
+        }
+    });
+    return $.fn.zTree.init($("#" + zTreeDom), setting, data);
+}
+
+
+function myOnCheck(event, treeId, treeNode) {
+    console.log("treeNode", treeNode);
+
+    console.log("treeId", treeId);
+
+    console.log("event", event);
+}
+
+
 jsPlumb.ready(function () {
 
     // setup some defaults for jsPlumb.
@@ -39,6 +195,7 @@ jsPlumb.ready(function () {
 
     instance.registerConnectionType("basic", { anchor:"Continuous", connector:"StateMachine" });
 
+    vm.data['jsp'] = instance;
     window.jsp = instance;
 
     var canvas = document.getElementById("canvas");

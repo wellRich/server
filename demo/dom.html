@@ -12,29 +12,45 @@
         <link rel="stylesheet" href="../../server/assets/vendor/jsPlumb/css/main.css">
         <link rel="stylesheet" href="../../server/assets/vendor/jsPlumb/css/jsplumbtoolkit-demo.css">
         <link rel="stylesheet" href="demo.css">
+
+        <link rel="stylesheet" href="../../server/assets/vendor/jquery/plugins/ztree/zTreeStyle.css">
     </head>
-    <body data-demo-id="statemachine">
+    <body data-demo-id="statemachine" ms-controller="root">
 
 
         <div class="jtk-demo-main">
-            <!-- demo -->
-            <div class="jtk-demo-canvas canvas-wide statemachine-demo jtk-surface jtk-surface-nopan" id="canvas">
-                <div class="w" id="opened">BEGIN
-                    <div class="ep" action="begin"></div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" id="searchZoning" ms-duplex="data.searchValue" class="form-control input-sm" placeholder="使用区划名进行查询...">
+                        <span class="input-group-addon" ms-on-click="draw()">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                    <ul class="ztree" id="tables"></ul>
                 </div>
-                <div class="w" id="phone1">PHONE INTERVIEW 1
-                    <div class="ep" action="phone1"></div>
-                </div>
-                <div class="w" id="phone2">PHONE INTERVIEW 2
-                    <div class="ep" action="phone2"></div>
-                </div>
-                <div class="w" id="inperson">IN PERSON
-                    <div class="ep" action="inperson"></div>
-                </div>
-                <div class="w" id="rejected">REJECTED
-                    <div class="ep" action="rejected"></div>
+                <div class="col-md-9">
+                    <div class="jtk-demo-canvas canvas-wide statemachine-demo jtk-surface jtk-surface-nopan" >
+                        <div class="w" id="opened">BEGIN
+                            <div class="ep" action="begin"></div>
+                        </div>
+                        <div class="w" id="phone1">PHONE INTERVIEW 1
+                            <div class="ep" action="phone1"></div>
+                        </div>
+                        <div class="w" id="phone2">PHONE INTERVIEW 2
+                            <div class="ep" action="phone2"></div>
+                        </div>
+                        <div class="w" id="inperson">IN PERSON
+                            <div class="ep" action="inperson"></div>
+                        </div>
+                        <div class="w" id="rejected">REJECTED
+                            <div class="ep" action="rejected"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- demo -->
+
             <!-- /demo -->
             <!-- explanation -->
             <div class="description">
@@ -54,8 +70,7 @@
 
 
 
-        <!-- JS -->
-        <script src="../../server/assets/vendor/jquery/jquery-2.2.3.min.js"></script>
+
         <!-- support lib for bezier stuff -->
         <script src="../../server/assets/vendor/jsPlumb/node_modules/jsbezier/js/jsbezier.js"></script>
         <!-- event adapter -->
@@ -98,6 +113,13 @@
         <!--<script src="../../server/assets/vendor/jsPlumb/src/bezier-editor.js"></script>-->
         <!-- /JS -->
 
+        <script src="../../server/node_modules/avalon2/dist/avalon.js"></script>
+        <!-- JS -->
+        <script src="../../server/assets/vendor/jquery/jquery-2.2.3.min.js"></script>
+        <!-- ztree -->
+        <script src="../../server/assets/vendor/jquery/plugins/ztree/jquery.ztree.all.js"></script>
+        <script src="../../server/assets/vendor/jquery/plugins/ztree/jquery.ztree.search.js"></script>
+        <script src="testData.js"></script>
         <!--  demo code -->
         <script src="demo.js"></script>
 
