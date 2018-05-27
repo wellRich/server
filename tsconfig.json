@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "AMD",
+    "target": "es5",
+    "sourceMap": true,
+    "outFile": "demo/server.js"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src/**/*"
+]
+}

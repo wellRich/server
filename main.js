@@ -169,34 +169,7 @@ require(['avalon', "lodash", "table", "column", "zTree"], function (avalon, _, T
         return zTreeInit($("#" + zTreeDom), setting, data);
     }
 
-   /* function transformTozTreeNodes (setting, sNodes) {
-        var i, l,
-            key = setting.data.simpleData.idKey,
-            parentKey = setting.data.simpleData.pIdKey,
-            childKey = setting.data.key.children;
-        if (!key || key == "" || !sNodes) return [];
 
-        if (_.isArray(sNodes)) {
-            var r = [];
-            var tmpMap = {};
-            for (i = 0, l = sNodes.length; i < l; i++) {
-                tmpMap[sNodes[i][key]] = sNodes[i];
-            }
-            console.log("tmpMap---> ", tmpMap);
-            for (i = 0, l = sNodes.length; i < l; i++) {
-                if (tmpMap[sNodes[i][parentKey]] && sNodes[i][key] != sNodes[i][parentKey]) {
-                    if (!tmpMap[sNodes[i][parentKey]][childKey])
-                        tmpMap[sNodes[i][parentKey]][childKey] = [];
-                    tmpMap[sNodes[i][parentKey]][childKey].push(sNodes[i]);
-                } else {
-                    r.push(sNodes[i]);
-                }
-            }
-            return r;
-        } else {
-            return [sNodes];
-        }
-    }*/
     function myOnCheck(event, treeId, treeNode) {
         console.log("treeNode", treeNode);
 

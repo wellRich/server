@@ -1,0 +1,12 @@
+{
+  "name": "reportWebDesign",
+  "version": "1.0.0",
+  "license": "gyk",
+  "dependencies": {
+    "@types/jquery": "^3.3.2",
+    "avalon2": "^2.2.10",
+    "jquery": "^3.3.1",
+    "typescript": "^2.8.3",
+    "ztree": "^3.5.24"
+  }
+}
