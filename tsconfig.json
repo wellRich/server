@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "system",
     "target": "es5",
-    "sourceMap": true
+    "sourceMap": true,
+    "outFile": "demo/server.js"
   },
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "src/**/*"
   ]
 }
