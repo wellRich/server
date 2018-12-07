@@ -147,74 +147,75 @@ var Line = /** @class */ (function () {
     });
     return Line;
 }());
-/**
- * Created by s on 2018/5/27.
- */
-var Table = /** @class */ (function () {
-    function Table(id, name, label, cols) {
-        this._id = id;
-        this._name = name;
-        this._label = label;
-        this._cols = cols;
-        Table._tableLib[id] = this;
-    }
-    Table.findAll = function () {
-        var re = [];
-        for (var t in Table._tableLib) {
-            re.push(Table._tableLib[t]);
+define("Table", ["require", "exports", "jquery"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var Table = /** @class */ (function () {
+        function Table(id, name, label, cols) {
+            this._id = id;
+            this._name = name;
+            this._label = label;
+            this._cols = cols;
+            Table._tableLib[id] = this;
         }
-        return re;
-    };
-    Table.findById = function (id) {
-        return Table._tableLib[id];
-    };
-    Object.defineProperty(Table.prototype, "id", {
-        get: function () {
-            return this._id;
-        },
-        set: function (value) {
-            this._id = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Table.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (value) {
-            this._name = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Table.prototype, "label", {
-        get: function () {
-            return this._label;
-        },
-        set: function (value) {
-            this._label = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Table.prototype, "cols", {
-        get: function () {
-            return this._cols;
-        },
-        set: function (value) {
-            this._cols = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Table, "tableLib", {
-        get: function () {
-            return this._tableLib;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Table;
-}());
+        Table.findAll = function () {
+            var re = [];
+            for (var t in Table._tableLib) {
+                re.push(Table._tableLib[t]);
+            }
+            return re;
+        };
+        Table.findById = function (id) {
+            return Table._tableLib[id];
+        };
+        Object.defineProperty(Table.prototype, "id", {
+            get: function () {
+                return this._id;
+            },
+            set: function (value) {
+                this._id = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Table.prototype, "name", {
+            get: function () {
+                return this._name;
+            },
+            set: function (value) {
+                this._name = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Table.prototype, "label", {
+            get: function () {
+                return this._label;
+            },
+            set: function (value) {
+                this._label = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Table.prototype, "cols", {
+            get: function () {
+                return this._cols;
+            },
+            set: function (value) {
+                this._cols = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Table, "tableLib", {
+            get: function () {
+                return this._tableLib;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return Table;
+    }());
+});
 //# sourceMappingURL=server.js.map

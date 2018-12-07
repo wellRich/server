@@ -1,6 +1,8 @@
+
 /**
  * Created by s on 2018/5/27.
  */
+import 'jquery'
 class Table{
     private _name: string;
     private _label: string;

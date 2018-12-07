@@ -4,9 +4,12 @@
         <title>jsPlumb - state machine demonstration</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
         <link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
+        <link rel="stylesheet" href="../../server/assets/vendor/bootstrap/css/bootstrap.min.css" >
+
+        <link rel="stylesheet" href="../../server/assets/vendor/font-awesome/css/font-awesome.min.css" >
 
         <link rel="stylesheet" href="../../server/assets/vendor/jsPlumb/css/jsplumbtoolkit-defaults.css">
         <link rel="stylesheet" href="../../server/assets/vendor/jsPlumb/css/main.css">
@@ -14,6 +17,9 @@
         <link rel="stylesheet" href="demo.css">
 
         <link rel="stylesheet" href="../../server/assets/vendor/jquery/plugins/ztree/zTreeStyle.css">
+        <script src="../../server/assets/vendor/requireJS/require.js"></script>
+        <script src="server.js"></script>
+        <script src="../../server/main.js"></script>
     </head>
     <body data-demo-id="statemachine" ms-controller="root">
 
@@ -71,9 +77,9 @@
 
 
 
-        <!-- support lib for bezier stuff -->
-        <script src="../../server/assets/vendor/jsPlumb/node_modules/jsbezier/js/jsbezier.js"></script>
-        <!-- event adapter -->
+
+        <script src="../../server/node_modules/jsbezier/js/jsbezier.js"></script>
+        <!--<!-- event adapter -->
         <script src="../../server/assets/vendor/jsPlumb/node_modules/mottle/js/mottle.js"></script>
         <!-- geometry functions -->
         <script src="../../server/assets/vendor/jsPlumb/node_modules/biltong/src/biltong.js"></script>
@@ -110,21 +116,11 @@
         <script src="../../server/assets/vendor/jsPlumb/src/base-library-adapter.js"></script>
         <!-- no library jsPlumb adapter -->
         <script src="../../server/assets/vendor/jsPlumb/src/dom.jsPlumb.js"></script>
-        <!--<script src="../../server/assets/vendor/jsPlumb/src/bezier-editor.js"></script>-->
         <!-- /JS -->
 
-        <script src="../../server/node_modules/avalon2/dist/avalon.js"></script>
-        <!-- JS -->
-        <script src="../../server/assets/vendor/jquery/jquery-2.2.3.min.js"></script>
-        <!-- ztree -->
-        <script src="../../server/assets/vendor/jquery/plugins/ztree/jquery.ztree.all.js"></script>
-        <script src="../../server/assets/vendor/jquery/plugins/ztree/jquery.ztree.search.js"></script>
         <script src="testData.js"></script>
         <!--  demo code -->
         <script src="demo.js"></script>
-
-        <script src="server.js"></script>
-
         <!--<script src="../demo-list.js"></script>-->
     </body>
 </html>
