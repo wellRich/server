@@ -1,4 +1,4 @@
-package com.gyk.demo.easy;
+package com.gyk.study.jpa.easy;
 
 
 import com.mysql.jdbc.DatabaseMetaData;

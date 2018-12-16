@@ -1,4 +1,4 @@
-package com.gyk.demo;
+package com.gyk.study.jpa;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

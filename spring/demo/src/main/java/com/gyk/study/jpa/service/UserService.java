@@ -1,6 +1,6 @@
-package com.gyk.demo.service;
+package com.gyk.study.jpa.service;
 
-import com.gyk.demo.entity.UserInfo;
+import com.gyk.study.jpa.entity.UserInfo;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.gyk.demo.easy;
+package com.gyk.study.jpa.easy;
 
 import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;

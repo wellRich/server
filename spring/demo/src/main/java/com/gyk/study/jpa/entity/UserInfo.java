@@ -1,4 +1,4 @@
-package com.gyk.demo.entity;
+package com.gyk.study.jpa.entity;
 
 import org.springframework.stereotype.Component;
 

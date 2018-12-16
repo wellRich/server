@@ -1,49 +1,34 @@
-package com.gyk.demo.easy;
+package com.gyk.study.jpa.easy;
 
-import com.gyk.demo.entity.UserInfo;
+import com.gyk.study.jpa.entity.UserInfo;
 //import com.mysql.cj.conf.ConnectionUrlParser;
 //import com.mysql.cj.conf.HostInfo;
 //import com.mysql.cj.conf.url.LoadbalanceConnectionUrl;
 //import com.mysql.cj.jdbc.*;
 //import com.mysql.cj.jdbc.result.ResultSetFactory;
-import com.gyk.demo.entity.UserRepository;
+import com.gyk.study.jpa.entity.UserRepository;
 import com.mysql.jdbc.ConnectionImpl;
 import com.mysql.jdbc.MySQLConnection;
-import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.hibernate.HikariConnectionProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.SessionFactoryBuilder;
-import org.hibernate.boot.cfgxml.spi.LoadedConfig;
 import org.hibernate.boot.internal.BootstrapContextImpl;
 import org.hibernate.boot.internal.MetadataBuilderImpl;
 import org.hibernate.boot.internal.SessionFactoryBuilderImpl;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
-import org.hibernate.boot.registry.BootstrapServiceRegistry;
-import org.hibernate.boot.registry.BootstrapServiceRegistryBuilder;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl;
 import org.hibernate.boot.spi.BootstrapContext;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 import org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl;
 import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
-import org.hibernate.engine.jdbc.internal.JdbcServicesImpl;
-import org.hibernate.engine.jdbc.spi.JdbcServices;
-import org.hibernate.service.ServiceRegistry;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Properties;
@@ -72,7 +57,7 @@ public class JpaHelper {
             PhysicalNamingStrategyStandardImpl physicalNamingStrategyStandard;
             Properties properties = new Properties();
             properties.put("user", "root");
-            properties.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/demo");
+            properties.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/jpa");
             properties.put("hibernate.connection.username", "root");
             properties.put("hibernate.connection.password", "123456");
             properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
@@ -83,9 +68,9 @@ public class JpaHelper {
             //properties.put("hibernate.implicit_naming_strategy", "");
             //properties.put("hibernate.physical_naming_strategy", "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl");
             properties.put("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
-            MySQLConnection jdbcConnection = new ConnectionImpl("127.0.0.1", 3306, properties, "demo", "jdbc:mysql://localhost:3306/demo");
+            MySQLConnection jdbcConnection = new ConnectionImpl("127.0.0.1", 3306, properties, "jpa", "jdbc:mysql://localhost:3306/jpa");
             jdbcConnection.createNewIO(true);
-            MyDatabaseMetaData databaseMetaData = new MyDatabaseMetaData(jdbcConnection, "demo");
+            MyDatabaseMetaData databaseMetaData = new MyDatabaseMetaData(jdbcConnection, "jpa");
             StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
                     .addService(JdbcEnvironment.class, new JdbcEnvironmentImpl(databaseMetaData, Dialect.getDialect(properties)))
                     .addService(ConnectionProvider.class, new HikariConnectionProvider(){{
@@ -96,8 +81,8 @@ public class JpaHelper {
 
             MetadataSources metadataSources = new MetadataSources(standardRegistry)
                     .addAnnotatedClass(UserInfo.class)
-                    .addAnnotatedClassName("com.gyk.demo.entity.UserInfo")
-                    .addPackage("com.gyk.demo.entity");
+                    .addAnnotatedClassName("UserInfo")
+                    .addPackage("com.gyk.jpa.entity");
 //                    .getMetadataBuilder()
 //                    .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE).build();
             Metadata metadata = metadataSources.getMetadataBuilder()
