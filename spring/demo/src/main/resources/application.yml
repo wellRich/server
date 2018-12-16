@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: jpa_demo
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+  jpa:
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
