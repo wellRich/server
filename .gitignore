@@ -54,3 +54,4 @@ fabric.properties
 
 .idea/codeStyles/
 .idea/inspectionProfiles/profiles_settings.xml
+node_modules/
