@@ -1,8 +1,9 @@
 package com.gyk.study.jpa.easy;
 
 
-import com.mysql.jdbc.DatabaseMetaData;
-import com.mysql.jdbc.MySQLConnection;
+import com.mysql.cj.jdbc.DatabaseMetaData;
+import com.mysql.cj.jdbc.JdbcConnection;
+import com.mysql.cj.jdbc.result.ResultSetFactory;
 
 /**
  * 〈一句话功能简述〉
@@ -12,11 +13,7 @@ import com.mysql.jdbc.MySQLConnection;
  * @version 1.0, 2018/12/16
  */
 public class MyDatabaseMetaData extends DatabaseMetaData {
-    public MyDatabaseMetaData(MySQLConnection connToSet, String databaseToSet) {
-        super(connToSet, databaseToSet);
+    public MyDatabaseMetaData(JdbcConnection connToSet, String databaseToSet, ResultSetFactory resultSetFactory) {
+        super(connToSet, databaseToSet, resultSetFactory);
     }
-//
-//    public MyDatabaseMetaData(JdbcConnection connToSet, String databaseToSet, ResultSetFactory resultSetFactory) {
-//        super(connToSet, databaseToSet, resultSetFactory);
-//    }
 }

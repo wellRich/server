@@ -16,7 +16,6 @@ import java.util.Date;
  * @version 1.0, 2018/12/16
  */
 @Entity
-@Table(name = "user_info")
 @Component
 public class UserInfo {
 
