@@ -46,7 +46,7 @@ public class JpaHelper {
     //    }
 
     public static void main(String[] args) {
-
+        SessionFactory sessionFactory = null;
         try {
             String url = "jdbc:mysql://localhost:3306/jpa?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false";
             Properties properties = new Properties();
@@ -83,7 +83,7 @@ public class JpaHelper {
             Metadata metadata = metadataSources.getMetadataBuilder()
                     .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                     .build();
-            SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
+            sessionFactory = metadata.getSessionFactoryBuilder().build();
             Session session = sessionFactory.openSession();
             JpaRepositoryFactory repositoryFactory = new JpaRepositoryFactory(session);
             UserRepository repository = repositoryFactory.getRepository(UserRepository.class);
@@ -103,9 +103,12 @@ public class JpaHelper {
             System.out.println(transaction);
             List<UserInfo> userInfos = repository.findAll();
             userInfos.forEach(System.out::println);
-            sessionFactory.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            if(sessionFactory != null && !sessionFactory.isClosed()){
+                sessionFactory.close();
+            }
         }
     }
 }

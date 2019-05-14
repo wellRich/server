@@ -1,5 +1,7 @@
 package com.gyk.study.jpa.entity;
 
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
@@ -16,7 +18,8 @@ import java.util.Date;
  * @version 1.0, 2018/12/16
  */
 @Entity
-@Component
+//@Component
+@Slf4j
 public class UserInfo {
 
 
@@ -27,7 +30,10 @@ public class UserInfo {
     private  String jobNumber; //工号
     private Date createTime; //创建时间
 
+    private boolean isGood;
+
     public UserInfo() {
+        log.info("create a userInfo!" + this.hashCode());
     }
 
 
